@@ -6,9 +6,9 @@ Base = declarative_base()
 class Product(Base):
     __tablename__ = "Products"
 
-    id = Column(int, primary_key= True, index=True)
-    name = Column(str)
-    description = Column (str)
-    price = Column (float)
-    quantity = Column (int)
+    id = Column(Integer, primary_key= True, index=True)
+    name = Column(String)
+    description = Column (String)
+    price = Column (Float)
+    quantity = Column (Integer)
 

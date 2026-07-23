@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from models import Product
 import database_models
-from database import session, engine
+from database import SessionLocal, engine
 
 
 app = FastAPI()
 
-databse_models.Base.metadata.create_all(bind=engine)
+database_models.Base.metadata.create_all(bind=engine)
 
 
 @app.get("/")
@@ -20,11 +20,20 @@ products = [
     Product(id=4, name="keyboard", description="budget keyboard", price=4000, quantity=1)
 
 ] 
+#below is how we sent the list of data above to my backend using A fuction called init_db()
+def init_db():
+    db = SessionLocal()
+
+    for product in products:
+        db.add(database_models.Product(**product.model_dump()))
+    db.commit()
+init_db()
+
 
 @app.get("/products")
 def get_all_products():
     # db connection 
-    db = session ()
+    db = SessionLocal ()
     # query
     db.query()
     return products
