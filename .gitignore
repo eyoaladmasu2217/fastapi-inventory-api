@@ -12,6 +12,10 @@ __pycache__/
 # FastAPI / Uvicorn
 *.log
 
+# Frontend dependencies and build files
+frontend/node_modules/
+frontend/dist/
+
 # IDE
 .vscode/
 .idea/
